@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T06:37:27.429Z",
+  "generatedAt": "2026-07-13T06:37:50.258Z",
   "about": {
     "title": "About",
     "headline": "Infrastructure · AI · DevOps · Cloud Engineering",
@@ -9,10 +9,10 @@
   },
   "contact": {
     "github": "https://github.com/msinclair25",
-    "email": {},
-    "linkedin": {},
-    "x": {},
-    "body": "Prefer GitHub for collaboration. Email and socials will appear here once set."
+    "email": "sinclair2015@outlook.com",
+    "linkedin": "https://www.linkedin.com/in/morgan-s-10b65839",
+    "x": "https://x.com/morganinc",
+    "body": "Email, GitHub, LinkedIn, or X — pick whichever works best."
   },
   "projects": []
 }

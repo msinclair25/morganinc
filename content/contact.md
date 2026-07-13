@@ -1,8 +1,8 @@
 ---
 github: https://github.com/msinclair25
-email:
-linkedin:
-x:
+email: sinclair2015@outlook.com
+linkedin: https://www.linkedin.com/in/morgan-s-10b65839
+x: https://x.com/morganinc
 ---
 
-Prefer GitHub for collaboration. Email and socials will appear here once set.
+Email, GitHub, LinkedIn, or X — pick whichever works best.
