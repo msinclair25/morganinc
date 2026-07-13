@@ -95,23 +95,13 @@ a:focus-visible {
   mask-image: linear-gradient(180deg, #000 0%, transparent 75%);
 }
 
-.bg-vine {
-  position: absolute;
-  left: 1.25rem;
-  top: 5rem;
-  height: min(55vh, 280px);
-  width: auto;
-  color: var(--live);
-  opacity: 0.35;
-}
-
 /* —— Layout —— */
 .wrap {
   position: relative;
   z-index: 1;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 1.25rem 5.5rem;
+  padding: 0 1.25rem 4rem;
 }
 
 .header {
@@ -369,53 +359,11 @@ nav a:hover {
   opacity: 0.8;
 }
 
-/* —— Pixel corner: one element, high quality, quiet —— */
-.pixel {
-  position: fixed;
-  right: 0.75rem;
-  bottom: 0.5rem;
-  z-index: 2;
-  width: 132px;
-  pointer-events: none;
-  opacity: 0.92;
-}
-
-.pixel img {
-  display: block;
-  width: 100%;
-  height: auto;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  filter: drop-shadow(0 0 24px rgba(61, 214, 255, 0.12));
-}
-
 /* —— Responsive —— */
-@media (max-width: 720px) {
-  .bg-vine {
-    opacity: 0.2;
-    left: 0.5rem;
-  }
-
-  .pixel {
-    width: 96px;
-    opacity: 0.75;
-  }
-
-  .wrap {
-    padding-bottom: 6.5rem;
-  }
-}
-
 @media (max-width: 480px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
-  }
-
-  .pixel {
-    width: 80px;
-    right: 0.35rem;
-    bottom: 0.25rem;
   }
 }
