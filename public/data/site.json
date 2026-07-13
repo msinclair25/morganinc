@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T06:40:09.816Z",
+  "generatedAt": "2026-07-13T06:42:50.060Z",
   "about": {
     "title": "About",
     "headline": "Infrastructure · AI · DevOps · Cloud Engineering",
@@ -32,6 +32,24 @@
       },
       "summary": "A guide to get people into AI, use it successfully, and take them from beginner through intermediate to advanced.",
       "body": "## Context\n\nMany people want to use AI effectively but stall at prompts and surface-level tools.\n\n## What I built\n\n**AI Models Made Useful** — a practical path from first contact with AI to intermediate and advanced usage: how to work with models productively, not just try them once.\n\n## Outcome\n\nLive guide hosted on Cloudflare Workers."
+    },
+    {
+      "slug": "sector-lords",
+      "title": "Sector Lords",
+      "status": "shipped",
+      "featured": true,
+      "order": 2,
+      "stack": [
+        "Game",
+        "Browser",
+        "Strategy"
+      ],
+      "links": {
+        "live": "https://sector-lords.pages.dev/",
+        "repo": "https://github.com/msinclair25/sector-lords"
+      },
+      "summary": "A browser-based cyberpunk crime-war strategy game.",
+      "body": "## Context\n\nA strategy experience set in a cyberpunk crime-war sandbox — playable in the browser.\n\n## What I built\n\n**Sector Lords** — territory, power, and conflict in a cyberpunk crime-war strategy game designed for the web.\n\n## Outcome\n\nPlayable deployment on Cloudflare Pages with source on GitHub."
     }
   ]
 }
