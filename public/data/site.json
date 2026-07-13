@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-07-13T06:37:27.429Z",
+  "about": {
+    "title": "About",
+    "headline": "Infrastructure · AI · DevOps · Cloud Engineering",
+    "tagline": "Building reliable systems at the edge of cloud and AI.",
+    "updated": "2026-07-12",
+    "body": "I'm **Morgan Sinclair** — infrastructure, AI, DevOps, and cloud engineering.\n\nI build systems that stay operable: edge platforms, automation, and the glue that turns models and services into something production-ready."
+  },
+  "contact": {
+    "github": "https://github.com/msinclair25",
+    "email": {},
+    "linkedin": {},
+    "x": {},
+    "body": "Prefer GitHub for collaboration. Email and socials will appear here once set."
+  },
+  "projects": []
+}

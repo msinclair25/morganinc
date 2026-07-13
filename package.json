@@ -4,7 +4,10 @@
   "private": true,
   "description": "Portfolio website for Morgan Sinclair — morganinc.cc",
   "scripts": {
+    "content": "node scripts/build-content.mjs",
+    "predev": "npm run content",
     "dev": "wrangler dev",
+    "predeploy": "npm run content",
     "deploy": "wrangler deploy",
     "cf-typegen": "wrangler types"
   },

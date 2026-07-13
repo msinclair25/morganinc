@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Morgan Sinclair — portfolio, projects, and writing."
+      content="Morgan Sinclair — Infrastructure, AI, DevOps, and Cloud Engineering."
     />
     <meta name="theme-color" content="#0c0f12" />
     <title>Morgan Sinclair</title>
@@ -16,7 +16,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0f12'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='16' fill='%23e8d5a3'%3EM%3C/text%3E%3C/svg%3E" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0f12'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='16' fill='%23e8d5a3'%3EM%3C/text%3E%3C/svg%3E"
+    />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -31,14 +34,15 @@
 
     <main>
       <section class="hero">
-        <p class="eyebrow">Portfolio · morganinc.cc</p>
+        <p class="eyebrow" id="hero-eyebrow">
+          Infrastructure · AI · DevOps · Cloud
+        </p>
         <h1>
           Morgan<br />
           <em>Sinclair</em>
         </h1>
-        <p class="lede">
-          Building tools, systems, and experiences at the edge —
-          from infrastructure to product.
+        <p class="lede" id="hero-tagline">
+          Building reliable systems at the edge of cloud and AI.
         </p>
         <div class="hero-actions">
           <a class="btn primary" href="#work">View work</a>
@@ -49,47 +53,21 @@
       <section id="work" class="section">
         <div class="section-head">
           <h2>Selected work</h2>
-          <p>Projects will land here as the vault and site grow.</p>
+          <p id="work-intro">
+            Case studies from the vault — featured projects appear here.
+          </p>
         </div>
-        <ul class="project-grid">
-          <li class="project-card placeholder">
-            <span class="tag">Coming soon</span>
-            <h3>Featured project</h3>
-            <p>
-              Add case studies from the Obsidian vault — titles, stacks, and
-              outcomes will populate this grid.
-            </p>
-          </li>
-          <li class="project-card placeholder">
-            <span class="tag">Coming soon</span>
-            <h3>Open source / tooling</h3>
-            <p>
-              Space for repos, experiments, and infrastructure work.
-            </p>
-          </li>
-          <li class="project-card placeholder">
-            <span class="tag">Coming soon</span>
-            <h3>Writing</h3>
-            <p>
-              Notes and long-form pieces, exported from Obsidian into the site.
-            </p>
-          </li>
-        </ul>
+        <ul class="project-grid" id="project-grid"></ul>
       </section>
 
       <section id="about" class="section about">
         <div class="section-head">
           <h2>About</h2>
         </div>
-        <div class="about-body">
+        <div class="about-body" id="about-body">
           <p>
-            Hello — I’m Morgan. This site is my public portfolio on
-            <strong>morganinc.cc</strong>, hosted on Cloudflare Workers and
-            fed by an Obsidian vault.
-          </p>
-          <p>
-            Content and project details are still being drafted. Check back
-            soon, or reach out below.
+            I'm <strong>Morgan Sinclair</strong> — focused on infrastructure,
+            AI systems, DevOps, and cloud engineering.
           </p>
         </div>
       </section>
@@ -97,15 +75,9 @@
       <section id="contact" class="section contact">
         <div class="section-head">
           <h2>Contact</h2>
-          <p>Prefer GitHub for now while contact channels are set up.</p>
+          <p id="contact-intro">Ways to reach me.</p>
         </div>
-        <a
-          class="btn primary"
-          href="https://github.com/msinclair25"
-          rel="noopener noreferrer"
-          target="_blank"
-          >GitHub · msinclair25</a
-        >
+        <div class="contact-links" id="contact-links"></div>
       </section>
     </main>
 
@@ -114,8 +86,6 @@
       <p class="muted">Deployed on Cloudflare Workers</p>
     </footer>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+    <script src="/app.js" type="module"></script>
   </body>
 </html>

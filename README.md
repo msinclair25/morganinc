@@ -21,10 +21,28 @@ npm run deploy
 
 Custom domains `morganinc.cc` and `www.morganinc.cc` are declared in `wrangler.jsonc` and provisioned on deploy.
 
+## Content (Obsidian)
+
+Canonical copy lives under `content/`:
+
+| Path | Purpose |
+|------|---------|
+| `content/about.md` | Headline, tagline, About body |
+| `content/contact.md` | Email, GitHub, LinkedIn, X |
+| `content/projects/*.md` | Work cards (frontmatter + optional body) |
+| `content/_templates/` | Obsidian project template |
+
+```bash
+npm run content   # → public/data/site.json
+npm run dev       # content build + local preview
+npm run deploy    # content build + Cloudflare deploy
+```
+
 ## Structure
 
 | Path | Purpose |
 |------|---------|
+| `content/` | Vault-friendly markdown (source of truth) |
 | `public/` | Static site assets served by the Worker |
+| `scripts/build-content.mjs` | MD → `public/data/site.json` |
 | `wrangler.jsonc` | Worker name, assets, observability, custom domains |
-| `.obsidian/` | Local Obsidian vault config (not all files committed) |
