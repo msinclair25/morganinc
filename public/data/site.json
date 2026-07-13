@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T06:37:50.258Z",
+  "generatedAt": "2026-07-13T06:40:09.816Z",
   "about": {
     "title": "About",
     "headline": "Infrastructure · AI · DevOps · Cloud Engineering",
@@ -14,5 +14,24 @@
     "x": "https://x.com/morganinc",
     "body": "Email, GitHub, LinkedIn, or X — pick whichever works best."
   },
-  "projects": []
+  "projects": [
+    {
+      "slug": "ai-models-made-useful",
+      "title": "AI Models Made Useful",
+      "status": "shipped",
+      "featured": true,
+      "order": 1,
+      "stack": [
+        "AI",
+        "Guides",
+        "Workers"
+      ],
+      "links": {
+        "live": "https://bold-dawn-9942.darthcmo.workers.dev/",
+        "repo": null
+      },
+      "summary": "A guide to get people into AI, use it successfully, and take them from beginner through intermediate to advanced.",
+      "body": "## Context\n\nMany people want to use AI effectively but stall at prompts and surface-level tools.\n\n## What I built\n\n**AI Models Made Useful** — a practical path from first contact with AI to intermediate and advanced usage: how to work with models productively, not just try them once.\n\n## Outcome\n\nLive guide hosted on Cloudflare Workers."
+    }
+  ]
 }
