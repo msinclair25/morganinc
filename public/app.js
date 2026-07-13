@@ -3,8 +3,6 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 const prefersReduced =
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-const finePointer =
-  window.matchMedia?.("(pointer: fine)").matches ?? false;
 
 const ACCENTS = ["gold", "cyan", "ember", "violet"];
 
@@ -49,66 +47,6 @@ function padIndex(n) {
   return String(n).padStart(2, "0");
 }
 
-/* —— Custom cursor —— */
-function initCursor() {
-  if (prefersReduced || !finePointer) return;
-
-  const ring = document.getElementById("cursor");
-  const dot = document.getElementById("cursor-dot");
-  if (!ring || !dot) return;
-
-  document.body.classList.add("has-cursor", "cursor-on");
-
-  let x = window.innerWidth / 2;
-  let y = window.innerHeight / 2;
-  let rx = x;
-  let ry = y;
-
-  window.addEventListener(
-    "pointermove",
-    (e) => {
-      x = e.clientX;
-      y = e.clientY;
-      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-    },
-    { passive: true },
-  );
-
-  const tick = () => {
-    rx += (x - rx) * 0.18;
-    ry += (y - ry) * 0.18;
-    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-    requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-
-  const hoverSel = "a, button, .btn, .project-card, .contact-card, .pillars li";
-  document.addEventListener("pointerover", (e) => {
-    if (e.target.closest?.(hoverSel)) ring.classList.add("is-hover");
-  });
-  document.addEventListener("pointerout", (e) => {
-    if (e.target.closest?.(hoverSel)) ring.classList.remove("is-hover");
-  });
-}
-
-/* —— Magnetic buttons —— */
-function initMagnetic() {
-  if (prefersReduced || !finePointer) return;
-
-  document.querySelectorAll("[data-magnetic]").forEach((el) => {
-    el.addEventListener("pointermove", (e) => {
-      const r = el.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width / 2);
-      const dy = e.clientY - (r.top + r.height / 2);
-      el.style.transform = `translate(${dx * 0.18}px, ${dy * 0.22}px)`;
-    });
-    el.addEventListener("pointerleave", () => {
-      el.style.transform = "";
-    });
-  });
-}
-
-/* —— Scroll reveal —— */
 function initReveal() {
   const nodes = document.querySelectorAll("[data-reveal]");
   if (!nodes.length) return;
@@ -127,116 +65,10 @@ function initReveal() {
         }
       }
     },
-    { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+    { rootMargin: "0px 0px -6% 0px", threshold: 0.06 },
   );
 
   nodes.forEach((n) => io.observe(n));
-}
-
-/* —— Constellation canvas —— */
-function initConstellation() {
-  const canvas = document.getElementById("constellation");
-  if (!canvas || prefersReduced) return;
-
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  let w = 0;
-  let h = 0;
-  let points = [];
-  let raf = 0;
-  let mouse = { x: -9999, y: -9999 };
-
-  function resize() {
-    w = canvas.width = window.innerWidth * devicePixelRatio;
-    h = canvas.height = window.innerHeight * devicePixelRatio;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
-    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-
-    const count = Math.min(
-      70,
-      Math.floor((window.innerWidth * window.innerHeight) / 18000),
-    );
-    points = Array.from({ length: count }, () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-      r: Math.random() * 1.4 + 0.4,
-    }));
-  }
-
-  function frame() {
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-    for (const p of points) {
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0 || p.x > window.innerWidth) p.vx *= -1;
-      if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1;
-
-      const dx = p.x - mouse.x;
-      const dy = p.y - mouse.y;
-      const dist = Math.hypot(dx, dy);
-      if (dist < 140) {
-        p.x += dx * 0.01;
-        p.y += dy * 0.01;
-      }
-    }
-
-    for (let i = 0; i < points.length; i++) {
-      for (let j = i + 1; j < points.length; j++) {
-        const a = points[i];
-        const b = points[j];
-        const d = Math.hypot(a.x - b.x, a.y - b.y);
-        if (d < 130) {
-          const alpha = (1 - d / 130) * 0.18;
-          ctx.strokeStyle = `rgba(232, 213, 163, ${alpha})`;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
-      }
-    }
-
-    for (const p of points) {
-      ctx.fillStyle = "rgba(232, 213, 163, 0.55)";
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    raf = requestAnimationFrame(frame);
-  }
-
-  resize();
-  frame();
-  window.addEventListener("resize", resize, { passive: true });
-  window.addEventListener(
-    "pointermove",
-    (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    },
-    { passive: true },
-  );
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) cancelAnimationFrame(raf);
-    else raf = requestAnimationFrame(frame);
-  });
-}
-
-/* —— Project pointer glow —— */
-function bindCardGlow(card) {
-  if (prefersReduced || !finePointer) return;
-  card.addEventListener("pointermove", (e) => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-    card.style.setProperty("--my", `${e.clientY - r.top}px`);
-  });
 }
 
 function renderProjects(projects) {
@@ -288,7 +120,7 @@ function renderProjects(projects) {
       const tagClass = p.status === "wip" ? "tag wip" : "tag";
 
       return `
-        <li class="project-card" data-accent="${accent}" data-reveal style="--delay: ${i * 70}ms">
+        <li class="project-card" data-accent="${accent}" data-reveal style="--delay: ${i * 50}ms">
           <div class="project-num" aria-hidden="true">${padIndex(i + 1)}</div>
           <div class="project-main">
             <div class="project-top">
@@ -308,7 +140,6 @@ function renderProjects(projects) {
     })
     .join("");
 
-  grid.querySelectorAll(".project-card").forEach(bindCardGlow);
   initReveal();
 }
 
@@ -397,9 +228,6 @@ function renderContact(contact) {
 }
 
 async function boot() {
-  initCursor();
-  initMagnetic();
-  initConstellation();
   initReveal();
 
   try {
