@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T06:42:50.060Z",
+  "generatedAt": "2026-07-13T06:47:08.846Z",
   "about": {
     "title": "About",
     "headline": "Infrastructure · AI · DevOps · Cloud Engineering",
@@ -50,6 +50,26 @@
       },
       "summary": "A browser-based cyberpunk crime-war strategy game.",
       "body": "## Context\n\nA strategy experience set in a cyberpunk crime-war sandbox — playable in the browser.\n\n## What I built\n\n**Sector Lords** — territory, power, and conflict in a cyberpunk crime-war strategy game designed for the web.\n\n## Outcome\n\nPlayable deployment on Cloudflare Pages with source on GitHub."
+    },
+    {
+      "slug": "corsairs-and-corps",
+      "title": "Corsairs & Corps: The Physics of Greed",
+      "status": "wip",
+      "featured": true,
+      "order": 3,
+      "stack": [
+        "Unity",
+        "ECS",
+        "DOTS",
+        "3D",
+        "MMO"
+      ],
+      "links": {
+        "live": "https://shy-block-ce63.darthcmo.workers.dev/",
+        "repo": null
+      },
+      "summary": "An ambitious 3D space simulation MMO-lite with greed mechanics, built in Unity (ECS) and DOTS. Currently under development.",
+      "body": "## Context\n\nA long-horizon space sim focused on greed as a system — economics, conflict, and player-driven pressure in 3D space.\n\n## What I built\n\n**Corsairs & Corps: The Physics of Greed** — Unity ECS + DOTS architecture for large-scale simulation and multiplayer-lite ambitions.\n\n## Outcome\n\nIn active development; public landing / progress presence on Workers."
     }
   ]
 }
