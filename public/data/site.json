@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T06:47:08.846Z",
+  "generatedAt": "2026-07-13T06:52:47.510Z",
   "about": {
     "title": "About",
     "headline": "Infrastructure · AI · DevOps · Cloud Engineering",
@@ -70,6 +70,26 @@
       },
       "summary": "An ambitious 3D space simulation MMO-lite with greed mechanics, built in Unity (ECS) and DOTS. Currently under development.",
       "body": "## Context\n\nA long-horizon space sim focused on greed as a system — economics, conflict, and player-driven pressure in 3D space.\n\n## What I built\n\n**Corsairs & Corps: The Physics of Greed** — Unity ECS + DOTS architecture for large-scale simulation and multiplayer-lite ambitions.\n\n## Outcome\n\nIn active development; public landing / progress presence on Workers."
+    },
+    {
+      "slug": "hoplon-defense",
+      "title": "Hoplon Defense",
+      "status": "shipped",
+      "featured": true,
+      "order": 4,
+      "stack": [
+        "AI",
+        "Workers",
+        "Privacy",
+        "Governance",
+        "Multi-model"
+      ],
+      "links": {
+        "live": "https://hoplondef.com",
+        "repo": "https://github.com/msinclair25/hoplon"
+      },
+      "summary": "Company AI chat with privacy, governance, multi-model routing, and token compression.",
+      "body": "## Context\n\nEnterprise teams need AI chat that respects org policy, privacy, and cost — not a free-for-all against public models.\n\n## What I built\n\n**Hoplon Defense** — company AI chat with privacy controls, governance, multi-model routing, and gateway token compression.\n\n### Features (v1)\n\n- Streaming multi-model chat\n- Conversation history\n- Paste images + file upload (images + PDF / TXT / MD / DOCX)\n- Org policy allowlists, PII redaction on text, audit metadata\n- Token compression on the gateway\n- Cross-model context — switch models mid-chat; full history is shared\n- Org instructions — firm-wide playbook injected every turn (admin)\n- User memory — durable facts/preferences across chats (view / delete)\n- Long-thread summary — older turns compressed into a rolling summary\n\n## Outcome\n\nLive product at [hoplondef.com](https://hoplondef.com). Source on GitHub (private for now)."
     }
   ]
 }
