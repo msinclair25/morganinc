@@ -2,7 +2,8 @@
 title: Hoplon Defense
 status: wip
 featured: true
-order: 4
+order: 1
+track: Product
 stack: [AI, Workers, Privacy, Governance, Multi-model]
 links:
   live: https://hoplondef.com

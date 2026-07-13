@@ -3,6 +3,7 @@ title: Sector Lords
 status: shipped
 featured: true
 order: 2
+track: Product
 stack: [Game, Browser, Strategy]
 links:
   live: https://sector-lords.pages.dev/

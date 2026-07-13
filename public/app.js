@@ -56,8 +56,29 @@ function contactItems(contact) {
   return items;
 }
 
-function ext(item) {
+function extAttrs(item) {
   return item.external ? ` target="_blank" rel="noopener noreferrer"` : "";
+}
+
+function renderImpact(items) {
+  const list = document.getElementById("impact-list");
+  if (!list) return;
+
+  if (!items?.length) {
+    list.innerHTML = "";
+    return;
+  }
+
+  list.innerHTML = items
+    .map(
+      (m) => `
+      <li>
+        <span class="metric-value">${escapeHtml(m.value)}</span>
+        <span class="metric-label">${escapeHtml(m.label)}</span>
+      </li>
+    `,
+    )
+    .join("");
 }
 
 function renderProjects(projects) {
@@ -91,13 +112,17 @@ function renderProjects(projects) {
         );
       }
 
+      const statusClass =
+        p.status === "wip" ? "status-wip" : p.status === "shipped" ? "status-shipped" : "";
+
       return `
         <li class="work-item">
-          <div class="work-meta">
+          <div class="work-top">
             <h3>${escapeHtml(p.title)}</h3>
+            ${p.track ? `<span class="badge">${escapeHtml(p.track)}</span>` : ""}
             ${
               p.status
-                ? `<span class="status${p.status === "wip" ? " wip" : ""}">${escapeHtml(statusLabel(p.status))}</span>`
+                ? `<span class="badge ${statusClass}">${escapeHtml(statusLabel(p.status))}</span>`
                 : ""
             }
           </div>
@@ -136,7 +161,7 @@ function renderContact(contact) {
       .map((item) => {
         const label =
           fullEmail && item.label === "Email" ? item.full : item.label;
-        return `<li><a href="${escapeHtml(item.href)}"${ext(item)}>${escapeHtml(label)}</a></li>`;
+        return `<li><a href="${escapeHtml(item.href)}"${extAttrs(item)}>${escapeHtml(label)}</a></li>`;
       })
       .join("");
   };
@@ -159,10 +184,12 @@ async function boot() {
     if (!res.ok) throw new Error(`site.json ${res.status}`);
     const site = await res.json();
     renderAbout(site.about);
+    renderImpact(site.impact);
     renderProjects(site.projects);
     renderContact(site.contact);
   } catch (err) {
     console.warn(err);
+    renderImpact([]);
     renderProjects([]);
     renderContact({ github: "https://github.com/msinclair25" });
   }

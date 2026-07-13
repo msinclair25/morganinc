@@ -7,9 +7,10 @@ Obsidian can open this folder (or the repo root) as a vault.
 
 ```
 content/
-  about.md           # About page body + site meta
+  about.md           # About body + hero meta
+  impact.md          # Operator dossier metrics (value | label)
   contact.md         # Public contact channels
-  projects/          # One note per project (Work grid)
+  projects/          # One note per project (Work list)
   _templates/        # Obsidian templates
 ```
 

@@ -2,7 +2,8 @@
 title: AI Models Made Useful
 status: shipped
 featured: true
-order: 1
+order: 4
+track: Product
 stack: [AI, Guides, Workers]
 links:
   live: https://bold-dawn-9942.darthcmo.workers.dev/

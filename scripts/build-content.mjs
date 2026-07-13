@@ -1,6 +1,5 @@
 /**
- * Parse content/*.md → public/data/site.json for the static portfolio.
- * Frontmatter is simple YAML (key: value, arrays, nested links).
+ * Parse content/*.md → public/data/site.json
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -29,7 +28,6 @@ function parseFrontmatter(raw) {
       continue;
     }
 
-    // Nested block: key:\n  child: value
     const nest = line.match(/^([A-Za-z0-9_]+):\s*$/);
     if (nest) {
       const key = nest[1];
@@ -61,7 +59,6 @@ function coerce(value) {
   if (v === "true") return true;
   if (v === "false") return false;
   if (/^-?\d+(\.\d+)?$/.test(v)) return Number(v);
-  // [a, b, c]
   if (v.startsWith("[") && v.endsWith("]")) {
     const inner = v.slice(1, -1).trim();
     if (!inner) return [];
@@ -73,8 +70,21 @@ function coerce(value) {
 function readMd(rel) {
   const full = path.join(contentDir, rel);
   if (!fs.existsSync(full)) return null;
-  const raw = fs.readFileSync(full, "utf8");
-  return parseFrontmatter(raw);
+  return parseFrontmatter(fs.readFileSync(full, "utf8"));
+}
+
+function loadImpact() {
+  const doc = readMd("impact.md");
+  if (!doc?.body) return [];
+  return doc.body
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [value, ...rest] = line.split("|").map((s) => s.trim());
+      return { value, label: rest.join("|").trim() || value };
+    })
+    .filter((m) => m.value);
 }
 
 function loadProjects() {
@@ -85,13 +95,10 @@ function loadProjects() {
     .readdirSync(dir)
     .filter((f) => f.endsWith(".md"))
     .map((f) => {
-      const raw = fs.readFileSync(path.join(dir, f), "utf8");
-      const { data, body } = parseFrontmatter(raw);
-      return {
-        slug: f.replace(/\.md$/, ""),
-        ...data,
-        body,
-      };
+      const { data, body } = parseFrontmatter(
+        fs.readFileSync(path.join(dir, f), "utf8"),
+      );
+      return { slug: f.replace(/\.md$/, ""), ...data, body };
     })
     .filter((p) => p.title)
     .sort((a, b) => {
@@ -104,24 +111,21 @@ function loadProjects() {
 
 const about = readMd("about.md") || { data: {}, body: "" };
 const contact = readMd("contact.md") || { data: {}, body: "" };
+const impact = loadImpact();
 const projects = loadProjects();
 
 const site = {
   generatedAt: new Date().toISOString(),
-  about: {
-    ...about.data,
-    body: about.body,
-  },
-  contact: {
-    ...contact.data,
-    body: contact.body,
-  },
+  about: { ...about.data, body: about.body },
+  contact: { ...contact.data, body: contact.body },
+  impact,
   projects: projects.map((p) => ({
     slug: p.slug,
     title: p.title,
     status: p.status ?? "wip",
     featured: p.featured !== false,
     order: p.order ?? 99,
+    track: p.track ?? "Product",
     stack: p.stack ?? [],
     links: p.links ?? {},
     summary: p.summary ?? "",
@@ -132,5 +136,5 @@ const site = {
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(outFile, JSON.stringify(site, null, 2) + "\n", "utf8");
 console.log(
-  `Wrote ${path.relative(root, outFile)} (${site.projects.length} projects)`,
+  `Wrote ${path.relative(root, outFile)} (${site.projects.length} projects, ${site.impact.length} impact)`,
 );

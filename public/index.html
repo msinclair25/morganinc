@@ -7,7 +7,7 @@
       name="description"
       content="Morgan Sinclair — Infrastructure, AI, DevOps, and Cloud Engineering."
     />
-    <meta name="theme-color" content="#0b0d10" />
+    <meta name="theme-color" content="#0a0b0d" />
     <meta property="og:title" content="Morgan Sinclair" />
     <meta
       property="og:description"
@@ -25,18 +25,11 @@
     <link rel="icon" href="/assets/mark.svg" type="image/svg+xml" />
   </head>
   <body>
-    <div class="bg" aria-hidden="true">
-      <div class="bg-heat"></div>
-      <div class="bg-grid"></div>
-    </div>
-
-    <div class="wrap">
+    <div class="page">
       <header class="header">
-        <a class="logo" href="/">
-          <img src="/assets/mark.svg" alt="" width="20" height="20" />
-          <span>morganinc</span>
-        </a>
-        <nav>
+        <a class="logo" href="/">morganinc</a>
+        <nav aria-label="Primary">
+          <a href="#impact">Impact</a>
           <a href="#about">About</a>
           <a href="#work">Work</a>
           <a href="#contact">Contact</a>
@@ -46,42 +39,56 @@
       <main>
         <section class="hero">
           <p class="kicker" id="hero-eyebrow">
-            Infrastructure · AI · DevOps · Cloud
+            Infrastructure · AI · DevOps · Cloud Engineering
           </p>
           <h1>Morgan Sinclair</h1>
           <p class="lede" id="hero-tagline">
-            Nearly 30 years building infrastructure that scales — now building AI
-            systems and games too.
+            Nearly 30 years building infrastructure that scales — now shipping
+            AI systems and games.
           </p>
-          <ul class="links" id="header-socials"></ul>
+          <ul class="inline-links" id="header-socials"></ul>
         </section>
 
-        <section id="about" class="block">
-          <h2>About</h2>
-          <div class="copy" id="about-body"></div>
+        <section id="impact" class="section">
+          <div class="section-head">
+            <h2>Impact</h2>
+            <p class="section-note">Enterprise systems · outcomes</p>
+          </div>
+          <ul class="metrics" id="impact-list"></ul>
         </section>
 
-        <section id="work" class="block">
-          <h2>Work</h2>
-          <ul class="work" id="project-grid"></ul>
+        <section id="about" class="section">
+          <div class="section-head">
+            <h2>About</h2>
+          </div>
+          <div class="prose" id="about-body"></div>
         </section>
 
-        <section id="contact" class="block">
-          <h2>Contact</h2>
-          <p class="copy" id="contact-intro">
+        <section id="work" class="section">
+          <div class="section-head">
+            <h2>Work</h2>
+            <p class="section-note">Products · games · tools</p>
+          </div>
+          <ul class="work-list" id="project-grid"></ul>
+        </section>
+
+        <section id="contact" class="section">
+          <div class="section-head">
+            <h2>Contact</h2>
+          </div>
+          <p class="prose" id="contact-intro">
             If you're building something, let's talk.
           </p>
-          <ul class="links" id="contact-links"></ul>
+          <ul class="inline-links" id="contact-links"></ul>
         </section>
       </main>
 
       <footer class="footer">
         <span>© <span id="year"></span> Morgan Sinclair</span>
-        <span class="dim">morganinc.cc</span>
+        <span class="muted">morganinc.cc</span>
       </footer>
     </div>
 
     <script src="/app.js" type="module"></script>
   </body>
 </html>
-
