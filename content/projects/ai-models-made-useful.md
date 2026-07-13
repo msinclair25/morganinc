@@ -17,7 +17,7 @@ Many people want to use AI effectively but stall at prompts and surface-level to
 
 ## What I built
 
-**AI Models Made Useful** — a practical path from first contact with AI to intermediate and advanced usage: how to work with models productively, not just try them once.
+**AI Models Made Useful** is a practical path from first contact with AI through intermediate and advanced use. How to work with models productively, not just try them once.
 
 ## Outcome
 

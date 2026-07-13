@@ -1,12 +1,10 @@
 ---
 title: About
-headline: Infrastructure · AI · DevOps · Cloud Engineering
-tagline: Nearly 30 years building infrastructure that scales — now shipping AI systems and games.
+headline: Infrastructure, AI, DevOps, Cloud Engineering
+tagline: I've spent nearly 30 years building technology infrastructure that lets organizations grow. These days that same drive has spilled into AI and game development too.
 updated: 2026-07-13
 ---
 
-I'm **Morgan Sinclair** — infrastructure, security, cloud, and the AI systems that sit on top of them.
+I spent six years leading IT infrastructure for a private equity-backed HVAC company in Tucson, Arizona, helping take the organization from **$20 million to $98 million** in revenue. I built the stack from the ground up: zero-trust security on Fortinet, device management for **500+ users**, and the network foundation that let the company keep scaling. I migrated everything from on-prem Active Directory to **Microsoft Entra ID** and **SharePoint**. I automated onboarding so a 30-minute manual scripting job became a repeatable pipeline. I also championed AI adoption company-wide, wrote the usage policy, piloted Microsoft Copilot, then rolled out Claude for Teams with Microsoft 365 and Entra ID, and led a Center of Excellence across service ops, HR, marketing, and IT.
 
-I spent six years leading IT for a private equity-backed HVAC company in Tucson, taking the environment from on-prem constraints to a stack that could scale with the business: zero-trust on Fortinet, cloud identity, automation, and a company-wide AI program with real governance.
-
-Outside that seat I build products: an enterprise AI gateway, strategy games, and practical AI training. I care about systems that stay operable — and tools people can actually use.
+That same curiosity is what's behind the projects below. I love figuring things out and building real solutions. Right now that means going deep with tools like Grok, Claude, ChatGPT/Codex, and Obsidian, whatever fits the problem.

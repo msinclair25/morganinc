@@ -13,11 +13,11 @@ summary: A browser-based cyberpunk crime-war strategy game.
 
 ## Context
 
-A strategy experience set in a cyberpunk crime-war sandbox — playable in the browser.
+A strategy experience set in a cyberpunk crime-war sandbox, playable in the browser.
 
 ## What I built
 
-**Sector Lords** — territory, power, and conflict in a cyberpunk crime-war strategy game designed for the web.
+**Sector Lords** is territory, power, and conflict in a cyberpunk crime-war strategy game I built for the web.
 
 ## Outcome
 

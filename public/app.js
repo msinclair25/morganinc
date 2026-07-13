@@ -178,6 +178,74 @@ function renderContact(contact) {
   }
 }
 
+const CLI_SCRIPT = [
+  { type: "cmd", text: "whoami" },
+  { type: "out", text: "morgan sinclair", cls: "ok" },
+  { type: "cmd", text: "uptime" },
+  { type: "out", text: "~30 years building infrastructure that scales", cls: "dim" },
+  { type: "cmd", text: "focus" },
+  { type: "out", text: "infra  ·  ai  ·  devops  ·  cloud", cls: "ok" },
+  { type: "cmd", text: "status" },
+  { type: "out", text: "ops ready", cls: "ok" },
+];
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function renderCliStatic(el) {
+  const lines = [];
+  for (const step of CLI_SCRIPT) {
+    if (step.type === "cmd") {
+      lines.push(
+        `<span class="prompt">$</span> ${escapeHtml(step.text)}`,
+      );
+    } else {
+      const cls = step.cls ? ` class="${step.cls}"` : "";
+      lines.push(`<span${cls}>${escapeHtml(step.text)}</span>`);
+    }
+  }
+  el.innerHTML = `${lines.join("\n")}\n<span class="prompt">$</span> <span class="cli-cursor" aria-hidden="true"></span>`;
+}
+
+async function runCliAnimation() {
+  const el = document.getElementById("cli-body");
+  if (!el) return;
+
+  const reduced =
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+  if (reduced) {
+    renderCliStatic(el);
+    return;
+  }
+
+  let html = "";
+  el.innerHTML = `<span class="prompt">$</span> <span class="cli-cursor" aria-hidden="true"></span>`;
+
+  for (const step of CLI_SCRIPT) {
+    if (step.type === "cmd") {
+      html += `<span class="prompt">$</span> `;
+      el.innerHTML = `${html}<span class="cli-cursor" aria-hidden="true"></span>`;
+      for (const ch of step.text) {
+        html += escapeHtml(ch);
+        el.innerHTML = `${html}<span class="cli-cursor" aria-hidden="true"></span>`;
+        await sleep(28 + Math.random() * 32);
+      }
+      html += "\n";
+      el.innerHTML = `${html}<span class="cli-cursor" aria-hidden="true"></span>`;
+      await sleep(180);
+    } else {
+      await sleep(120);
+      const cls = step.cls ? ` class="${step.cls}"` : "";
+      html += `<span${cls}>${escapeHtml(step.text)}</span>\n`;
+      el.innerHTML = `${html}<span class="cli-cursor" aria-hidden="true"></span>`;
+      await sleep(220);
+    }
+  }
+
+  el.innerHTML = `${html}<span class="prompt">$</span> <span class="cli-cursor" aria-hidden="true"></span>`;
+}
+
 async function boot() {
   try {
     const res = await fetch("/data/site.json", { cache: "no-cache" });
@@ -193,6 +261,8 @@ async function boot() {
     renderProjects([]);
     renderContact({ github: "https://github.com/msinclair25" });
   }
+
+  void runCliAnimation();
 }
 
 boot();

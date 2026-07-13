@@ -13,11 +13,11 @@ summary: An ambitious 3D space simulation MMO-lite with greed mechanics, built i
 
 ## Context
 
-A long-horizon space sim focused on greed as a system — economics, conflict, and player-driven pressure in 3D space.
+A long-horizon space sim focused on greed as a system: economics, conflict, and player-driven pressure in 3D space.
 
 ## What I built
 
-**Corsairs & Corps: The Physics of Greed** — Unity ECS + DOTS architecture for large-scale simulation and multiplayer-lite ambitions.
+**Corsairs & Corps: The Physics of Greed** is a Unity ECS and DOTS build aimed at large-scale simulation and multiplayer-lite ambitions.
 
 ## Outcome
 

@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-13T07:46:09.922Z",
+  "generatedAt": "2026-07-13T07:53:59.019Z",
   "about": {
     "title": "About",
-    "headline": "Infrastructure · AI · DevOps · Cloud Engineering",
-    "tagline": "Nearly 30 years building infrastructure that scales — now shipping AI systems and games.",
+    "headline": "Infrastructure, AI, DevOps, Cloud Engineering",
+    "tagline": "I've spent nearly 30 years building technology infrastructure that lets organizations grow. These days that same drive has spilled into AI and game development too.",
     "updated": "2026-07-13",
-    "body": "I'm **Morgan Sinclair** — infrastructure, security, cloud, and the AI systems that sit on top of them.\n\nI spent six years leading IT for a private equity-backed HVAC company in Tucson, taking the environment from on-prem constraints to a stack that could scale with the business: zero-trust on Fortinet, cloud identity, automation, and a company-wide AI program with real governance.\n\nOutside that seat I build products: an enterprise AI gateway, strategy games, and practical AI training. I care about systems that stay operable — and tools people can actually use."
+    "body": "I spent six years leading IT infrastructure for a private equity-backed HVAC company in Tucson, Arizona, helping take the organization from **$20 million to $98 million** in revenue. I built the stack from the ground up: zero-trust security on Fortinet, device management for **500+ users**, and the network foundation that let the company keep scaling. I migrated everything from on-prem Active Directory to **Microsoft Entra ID** and **SharePoint**. I automated onboarding so a 30-minute manual scripting job became a repeatable pipeline. I also championed AI adoption company-wide, wrote the usage policy, piloted Microsoft Copilot, then rolled out Claude for Teams with Microsoft 365 and Entra ID, and led a Center of Excellence across service ops, HR, marketing, and IT.\n\nThat same curiosity is what's behind the projects below. I love figuring things out and building real solutions. Right now that means going deep with tools like Grok, Claude, ChatGPT/Codex, and Obsidian, whatever fits the problem."
   },
   "contact": {
     "github": "https://github.com/msinclair25",
@@ -16,28 +16,28 @@
   },
   "impact": [
     {
-      "value": "$20M → $98M",
-      "label": "PE-backed HVAC revenue scale during infra leadership"
+      "value": "$20M to $98M",
+      "label": "Helped scale a PE-backed HVAC company while leading infra"
     },
     {
       "value": "500+ users",
-      "label": "Device management, identity, and endpoint foundation"
+      "label": "Device management, identity, and the endpoint foundation"
     },
     {
       "value": "6 years",
-      "label": "Led IT infrastructure for a PE-backed organization"
+      "label": "Ran IT infrastructure end to end"
     },
     {
-      "value": "AD → Entra ID",
-      "label": "Migrated on-prem Active Directory to Entra ID & SharePoint"
+      "value": "On-prem AD to Entra ID",
+      "label": "Moved identity and collaboration into the cloud with SharePoint"
     },
     {
       "value": "AI CoE",
-      "label": "Usage policy, Copilot pilot, Claude for Teams + M365 / Entra"
+      "label": "Wrote policy, piloted Copilot, deployed Claude for Teams with M365"
     },
     {
       "value": "~30 years",
-      "label": "Building technology infrastructure that lets orgs grow"
+      "label": "Building tech infrastructure that lets organizations grow"
     }
   ],
   "projects": [
@@ -59,8 +59,8 @@
         "live": "https://hoplondef.com",
         "repo": null
       },
-      "summary": "Company AI chat with privacy, governance, multi-model routing, and token compression. Work in progress — public login not open yet.",
-      "body": "## Context\n\nEnterprise teams need AI chat that respects org policy, privacy, and cost — not a free-for-all against public models.\n\n## What I built\n\n**Hoplon Defense** — company AI chat with privacy controls, governance, multi-model routing, and gateway token compression.\n\n### Features (v1)\n\n- Streaming multi-model chat\n- Conversation history\n- Paste images + file upload (images + PDF / TXT / MD / DOCX)\n- Org policy allowlists, PII redaction on text, audit metadata\n- Token compression on the gateway\n- Cross-model context — switch models mid-chat; full history is shared\n- Org instructions — firm-wide playbook injected every turn (admin)\n- User memory — durable facts/preferences across chats (view / delete)\n- Long-thread summary — older turns compressed into a rolling summary\n\n## Outcome\n\nIn progress. Marketing / landing presence at [hoplondef.com](https://hoplondef.com); public login is not open yet. Source remains private on GitHub for now."
+      "summary": "Company AI chat with privacy, governance, multi-model routing, and token compression. Still a work in progress; public login is not open yet.",
+      "body": "## Context\n\nEnterprise teams need AI chat that respects org policy, privacy, and cost. Not a free-for-all against public models.\n\n## What I built\n\n**Hoplon Defense** is a company AI chat layer with privacy controls, governance, multi-model routing, and gateway token compression.\n\n### Features (v1)\n\n- Streaming multi-model chat\n- Conversation history\n- Paste images and file upload (images plus PDF, TXT, MD, DOCX)\n- Org policy allowlists, PII redaction on text, audit metadata\n- Token compression on the gateway\n- Cross-model context: switch models mid-chat and keep full history\n- Org instructions: firm-wide playbook injected every turn (admin)\n- User memory: durable facts and preferences across chats\n- Long-thread summary: older turns compressed into a rolling summary\n\n## Outcome\n\nStill in progress. Landing site is up at [hoplondef.com](https://hoplondef.com). Public login is not open yet, and the GitHub repo is private for now."
     },
     {
       "slug": "sector-lords",
@@ -79,7 +79,7 @@
         "repo": "https://github.com/msinclair25/sector-lords"
       },
       "summary": "A browser-based cyberpunk crime-war strategy game.",
-      "body": "## Context\n\nA strategy experience set in a cyberpunk crime-war sandbox — playable in the browser.\n\n## What I built\n\n**Sector Lords** — territory, power, and conflict in a cyberpunk crime-war strategy game designed for the web.\n\n## Outcome\n\nPlayable deployment on Cloudflare Pages with source on GitHub."
+      "body": "## Context\n\nA strategy experience set in a cyberpunk crime-war sandbox, playable in the browser.\n\n## What I built\n\n**Sector Lords** is territory, power, and conflict in a cyberpunk crime-war strategy game I built for the web.\n\n## Outcome\n\nPlayable deployment on Cloudflare Pages with source on GitHub."
     },
     {
       "slug": "corsairs-and-corps",
@@ -100,7 +100,7 @@
         "repo": null
       },
       "summary": "An ambitious 3D space simulation MMO-lite with greed mechanics, built in Unity (ECS) and DOTS. Currently under development.",
-      "body": "## Context\n\nA long-horizon space sim focused on greed as a system — economics, conflict, and player-driven pressure in 3D space.\n\n## What I built\n\n**Corsairs & Corps: The Physics of Greed** — Unity ECS + DOTS architecture for large-scale simulation and multiplayer-lite ambitions.\n\n## Outcome\n\nIn active development; public landing / progress presence on Workers."
+      "body": "## Context\n\nA long-horizon space sim focused on greed as a system: economics, conflict, and player-driven pressure in 3D space.\n\n## What I built\n\n**Corsairs & Corps: The Physics of Greed** is a Unity ECS and DOTS build aimed at large-scale simulation and multiplayer-lite ambitions.\n\n## Outcome\n\nIn active development; public landing / progress presence on Workers."
     },
     {
       "slug": "ai-models-made-useful",
@@ -119,7 +119,7 @@
         "repo": null
       },
       "summary": "A guide to get people into AI, use it successfully, and take them from beginner through intermediate to advanced.",
-      "body": "## Context\n\nMany people want to use AI effectively but stall at prompts and surface-level tools.\n\n## What I built\n\n**AI Models Made Useful** — a practical path from first contact with AI to intermediate and advanced usage: how to work with models productively, not just try them once.\n\n## Outcome\n\nLive guide hosted on Cloudflare Workers."
+      "body": "## Context\n\nMany people want to use AI effectively but stall at prompts and surface-level tools.\n\n## What I built\n\n**AI Models Made Useful** is a practical path from first contact with AI through intermediate and advanced use. How to work with models productively, not just try them once.\n\n## Outcome\n\nLive guide hosted on Cloudflare Workers."
     }
   ]
 }
