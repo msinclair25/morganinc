@@ -30,52 +30,33 @@ function bodyToHtml(body) {
 }
 
 function statusLabel(status) {
-  const map = {
-    shipped: "Shipped",
-    wip: "In progress",
-    archived: "Archived",
-  };
-  return map[status] || status || "";
+  return (
+    {
+      shipped: "Shipped",
+      wip: "In progress",
+      archived: "Archived",
+    }[status] || status || ""
+  );
 }
 
 function contactItems(contact) {
   const items = [];
   if (contact?.email) {
-    items.push({
-      href: `mailto:${contact.email}`,
-      label: "Email",
-      full: contact.email,
-      external: false,
-    });
+    items.push({ href: `mailto:${contact.email}`, label: "Email", full: contact.email });
   }
   if (contact?.github) {
-    items.push({
-      href: contact.github,
-      label: "GitHub",
-      full: "GitHub",
-      external: true,
-    });
+    items.push({ href: contact.github, label: "GitHub", external: true });
   }
   if (contact?.linkedin) {
-    items.push({
-      href: contact.linkedin,
-      label: "LinkedIn",
-      full: "LinkedIn",
-      external: true,
-    });
+    items.push({ href: contact.linkedin, label: "LinkedIn", external: true });
   }
   if (contact?.x) {
-    items.push({
-      href: contact.x,
-      label: "X",
-      full: "X",
-      external: true,
-    });
+    items.push({ href: contact.x, label: "X", external: true });
   }
   return items;
 }
 
-function linkAttrs(item) {
+function ext(item) {
   return item.external ? ` target="_blank" rel="noopener noreferrer"` : "";
 }
 
@@ -84,7 +65,6 @@ function renderProjects(projects) {
   if (!grid) return;
 
   const featured = (projects || []).filter((p) => p.featured !== false);
-
   if (!featured.length) {
     grid.innerHTML = `<li class="work-empty">Projects coming soon.</li>`;
     return;
@@ -110,23 +90,20 @@ function renderProjects(projects) {
           `<a href="${escapeHtml(p.links.repo)}" target="_blank" rel="noopener noreferrer">Repo</a>`,
         );
       }
-      const linkRow = links.length
-        ? `<div class="work-links">${links.join("")}</div>`
-        : "";
-
-      const status = p.status
-        ? `<span class="status${p.status === "wip" ? " wip" : ""}">${escapeHtml(statusLabel(p.status))}</span>`
-        : "";
 
       return `
         <li class="work-item">
           <div class="work-meta">
             <h3>${escapeHtml(p.title)}</h3>
-            ${status}
+            ${
+              p.status
+                ? `<span class="status${p.status === "wip" ? " wip" : ""}">${escapeHtml(statusLabel(p.status))}</span>`
+                : ""
+            }
           </div>
           <p class="summary">${escapeHtml(p.summary || "")}</p>
           ${tags}
-          ${linkRow}
+          ${links.length ? `<div class="work-links">${links.join("")}</div>` : ""}
         </li>
       `;
     })
@@ -135,12 +112,12 @@ function renderProjects(projects) {
 
 function renderAbout(about) {
   if (about?.headline) {
-    const eye = document.getElementById("hero-eyebrow");
-    if (eye) eye.textContent = about.headline;
+    const el = document.getElementById("hero-eyebrow");
+    if (el) el.textContent = about.headline;
   }
   if (about?.tagline) {
-    const lede = document.getElementById("hero-tagline");
-    if (lede) lede.textContent = about.tagline;
+    const el = document.getElementById("hero-tagline");
+    if (el) el.textContent = about.tagline;
   }
   if (about?.body) {
     const el = document.getElementById("about-body");
@@ -151,29 +128,28 @@ function renderAbout(about) {
 function renderContact(contact) {
   const items = contactItems(contact);
 
-  const listHtml = (useFull) => {
+  const html = (fullEmail) => {
     if (!items.length) {
       return `<li><a href="https://github.com/msinclair25" target="_blank" rel="noopener noreferrer">GitHub</a></li>`;
     }
     return items
       .map((item) => {
-        const text = useFull && item.label === "Email" ? item.full : item.label;
-        return `<li><a href="${escapeHtml(item.href)}"${linkAttrs(item)}>${escapeHtml(text)}</a></li>`;
+        const label =
+          fullEmail && item.label === "Email" ? item.full : item.label;
+        return `<li><a href="${escapeHtml(item.href)}"${ext(item)}>${escapeHtml(label)}</a></li>`;
       })
       .join("");
   };
 
   const header = document.getElementById("header-socials");
-  if (header) header.innerHTML = listHtml(false);
+  if (header) header.innerHTML = html(false);
 
   const contactList = document.getElementById("contact-links");
-  if (contactList) contactList.innerHTML = listHtml(true);
+  if (contactList) contactList.innerHTML = html(true);
 
   if (contact?.body) {
     const intro = document.getElementById("contact-intro");
-    if (intro) {
-      intro.textContent = contact.body.split("\n")[0] || intro.textContent;
-    }
+    if (intro) intro.textContent = contact.body.split("\n")[0] || intro.textContent;
   }
 }
 
@@ -186,7 +162,7 @@ async function boot() {
     renderProjects(site.projects);
     renderContact(site.contact);
   } catch (err) {
-    console.warn("Content load failed; using fallbacks.", err);
+    console.warn(err);
     renderProjects([]);
     renderContact({ github: "https://github.com/msinclair25" });
   }
