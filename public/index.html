@@ -7,83 +7,179 @@
       name="description"
       content="Morgan Sinclair — Infrastructure, AI, DevOps, and Cloud Engineering."
     />
-    <meta name="theme-color" content="#0c0f12" />
-    <title>Morgan Sinclair</title>
+    <meta name="theme-color" content="#07090c" />
+    <meta property="og:title" content="Morgan Sinclair" />
+    <meta
+      property="og:description"
+      content="Infrastructure · AI · DevOps · Cloud Engineering"
+    />
+    <meta property="og:url" content="https://morganinc.cc" />
+    <title>Morgan Sinclair — morganinc.cc</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0f12'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='16' fill='%23e8d5a3'%3EM%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307090c'/%3E%3Cpath d='M8 22V10l8 8 8-8v12' fill='none' stroke='%23e8d5a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
     />
   </head>
   <body>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="aurora" aria-hidden="true"></div>
+    <canvas class="constellation" id="constellation" aria-hidden="true"></canvas>
     <div class="grain" aria-hidden="true"></div>
-    <header class="site-header">
-      <a class="logo" href="/">MS</a>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <header class="site-header" data-reveal>
+      <a class="logo" href="/" data-magnetic>
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-text">morganinc</span>
+      </a>
       <nav aria-label="Primary">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#work" data-magnetic>Work</a>
+        <a href="#about" data-magnetic>About</a>
+        <a href="#contact" data-magnetic class="nav-cta">Contact</a>
       </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <p class="eyebrow" id="hero-eyebrow">
-          Infrastructure · AI · DevOps · Cloud
-        </p>
-        <h1>
-          Morgan<br />
-          <em>Sinclair</em>
+      <section class="hero" id="top">
+        <div class="hero-meta" data-reveal>
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="hero-eyebrow">Infrastructure · AI · DevOps · Cloud Engineering</span>
+        </div>
+
+        <h1 class="hero-title" data-reveal>
+          <span class="line"><span class="word">Morgan</span></span>
+          <span class="line italic"><span class="word">Sinclair</span></span>
         </h1>
-        <p class="lede" id="hero-tagline">
-          Building reliable systems at the edge of cloud and AI.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#work">View work</a>
-          <a class="btn ghost" href="#contact">Get in touch</a>
-        </div>
-      </section>
 
-      <section id="work" class="section">
-        <div class="section-head">
-          <h2>Selected work</h2>
-          <p id="work-intro">
-            Case studies from the vault — featured projects appear here.
+        <div class="hero-bottom" data-reveal>
+          <p class="lede" id="hero-tagline">
+            Building reliable systems at the edge of cloud and AI.
           </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#work" data-magnetic>
+              <span>Explore work</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="btn ghost" href="#contact" data-magnetic>Get in touch</a>
+          </div>
         </div>
-        <ul class="project-grid" id="project-grid"></ul>
+
+        <div class="hero-stats" data-reveal>
+          <div class="stat">
+            <span class="stat-value" id="stat-projects">04</span>
+            <span class="stat-label">Featured systems</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">∞</span>
+            <span class="stat-label">Edge · cloud · AI</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">CC</span>
+            <span class="stat-label">morganinc.cc</span>
+          </div>
+        </div>
       </section>
 
-      <section id="about" class="section about">
-        <div class="section-head">
-          <h2>About</h2>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Infrastructure</span><span class="sep">✦</span>
+          <span>Artificial Intelligence</span><span class="sep">✦</span>
+          <span>DevOps</span><span class="sep">✦</span>
+          <span>Cloud Engineering</span><span class="sep">✦</span>
+          <span>Workers</span><span class="sep">✦</span>
+          <span>Unity · ECS · DOTS</span><span class="sep">✦</span>
+          <span>Privacy &amp; Governance</span><span class="sep">✦</span>
+          <span>Infrastructure</span><span class="sep">✦</span>
+          <span>Artificial Intelligence</span><span class="sep">✦</span>
+          <span>DevOps</span><span class="sep">✦</span>
+          <span>Cloud Engineering</span><span class="sep">✦</span>
+          <span>Workers</span><span class="sep">✦</span>
+          <span>Unity · ECS · DOTS</span><span class="sep">✦</span>
+          <span>Privacy &amp; Governance</span><span class="sep">✦</span>
         </div>
-        <div class="about-body" id="about-body">
-          <p>
-            I'm <strong>Morgan Sinclair</strong> — focused on infrastructure,
-            AI systems, DevOps, and cloud engineering.
-          </p>
+      </div>
+
+      <section id="work" class="section work-section">
+        <div class="section-rail" data-reveal>
+          <p class="section-index">01</p>
+          <div class="section-head">
+            <h2>Selected work</h2>
+            <p id="work-intro">
+              Products, games, and platforms — from enterprise AI to browser
+              strategy and deep-space simulation.
+            </p>
+          </div>
+        </div>
+        <ol class="project-stage" id="project-grid"></ol>
+      </section>
+
+      <section id="about" class="section about-section">
+        <div class="section-rail" data-reveal>
+          <p class="section-index">02</p>
+          <div class="section-head">
+            <h2>About</h2>
+          </div>
+        </div>
+        <div class="about-grid" data-reveal>
+          <div class="about-body" id="about-body">
+            <p>
+              I'm <strong>Morgan Sinclair</strong> — infrastructure, AI, DevOps,
+              and cloud engineering.
+            </p>
+          </div>
+          <ul class="pillars">
+            <li>
+              <span class="pillar-kicker">01</span>
+              <h3>Infrastructure</h3>
+              <p>Systems that stay up, observable, and operable under load.</p>
+            </li>
+            <li>
+              <span class="pillar-kicker">02</span>
+              <h3>AI systems</h3>
+              <p>Models wired into real products with policy and cost control.</p>
+            </li>
+            <li>
+              <span class="pillar-kicker">03</span>
+              <h3>Cloud &amp; edge</h3>
+              <p>Workers, platforms, and automation at the network edge.</p>
+            </li>
+            <li>
+              <span class="pillar-kicker">04</span>
+              <h3>Interactive worlds</h3>
+              <p>Games and sims where systems design meets player agency.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <section id="contact" class="section contact">
-        <div class="section-head">
-          <h2>Contact</h2>
-          <p id="contact-intro">Ways to reach me.</p>
+      <section id="contact" class="section contact-section">
+        <div class="contact-panel" data-reveal>
+          <div class="section-rail">
+            <p class="section-index">03</p>
+            <div class="section-head">
+              <h2>Let’s build</h2>
+              <p id="contact-intro">
+                Email, GitHub, LinkedIn, or X — pick whichever works best.
+              </p>
+            </div>
+          </div>
+          <div class="contact-links" id="contact-links"></div>
         </div>
-        <div class="contact-links" id="contact-links"></div>
       </section>
     </main>
 
     <footer class="site-footer">
+      <a href="#top" class="footer-top" data-magnetic>↑ Top</a>
       <p>© <span id="year"></span> Morgan Sinclair</p>
-      <p class="muted">Deployed on Cloudflare Workers</p>
+      <p class="muted">morganinc.cc · Cloudflare Workers</p>
     </footer>
 
     <script src="/app.js" type="module"></script>
