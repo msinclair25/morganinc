@@ -20,5 +20,3 @@ That same curiosity is what's behind my current projects.
 I also built **AI Models Made Useful**, a training guide to help people actually learn how to use AI well.
 
 I love learning. Figuring things out and building real solutions is what gets me going, and right now that means going deep with Grok/Grok Build, Claude, ChatGPT/Codex, and Obsidian — whatever tool fits the problem.
-
-If you're building something, let's talk.
