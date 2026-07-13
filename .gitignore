@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+.npm
+.pnpm-store/
+
+# Build / Wrangler
+dist/
+.wrangler/
+.dev.vars
+*.local
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Obsidian workspace state (keep core vault config optional)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
