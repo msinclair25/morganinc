@@ -30,31 +30,31 @@
   <body>
     <div class="bg" aria-hidden="true"></div>
 
-    <header class="site-header" data-reveal>
+    <header class="site-header">
       <a class="logo" href="/">
         <span class="logo-mark" aria-hidden="true"></span>
         <span class="logo-text">morganinc</span>
       </a>
-      <nav aria-label="Primary">
+      <nav class="nav-main" aria-label="Primary">
         <a href="#work">Work</a>
         <a href="#about">About</a>
-        <a href="#contact" class="nav-cta">Contact</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <nav class="nav-social" id="header-socials" aria-label="Social links">
+        <!-- filled from site.json -->
       </nav>
     </header>
 
     <main>
       <section class="hero" id="top">
-        <div class="hero-meta" data-reveal>
-          <span class="status-dot" aria-hidden="true"></span>
-          <span id="hero-eyebrow">Infrastructure · AI · DevOps · Cloud Engineering</span>
-        </div>
-
-        <h1 class="hero-title" data-reveal>
-          <span class="line">Morgan</span>
-          <span class="line italic">Sinclair</span>
-        </h1>
-
-        <div class="hero-bottom" data-reveal>
+        <div class="hero-copy">
+          <p class="hero-meta">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="hero-eyebrow">Infrastructure · AI · DevOps · Cloud Engineering</span>
+          </p>
+          <h1 class="hero-title">
+            Morgan <em>Sinclair</em>
+          </h1>
           <p class="lede" id="hero-tagline">
             Nearly 30 years building infrastructure that scales — now building
             AI systems and games too.
@@ -64,13 +64,15 @@
               <span>Explore work</span>
               <span class="btn-arrow" aria-hidden="true">→</span>
             </a>
-            <a class="btn ghost" href="#contact">Get in touch</a>
+            <a class="btn ghost" href="mailto:sinclair2015@outlook.com" id="hero-email">
+              Email me
+            </a>
           </div>
         </div>
       </section>
 
       <section id="work" class="section work-section">
-        <div class="section-rail" data-reveal>
+        <div class="section-rail">
           <p class="section-index">01</p>
           <div class="section-head">
             <h2>Selected work</h2>
@@ -84,13 +86,13 @@
       </section>
 
       <section id="about" class="section about-section">
-        <div class="section-rail" data-reveal>
+        <div class="section-rail">
           <p class="section-index">02</p>
           <div class="section-head">
             <h2>About me</h2>
           </div>
         </div>
-        <div class="about-body" id="about-body" data-reveal>
+        <div class="about-body" id="about-body">
           <p>
             I've spent nearly 30 years building technology infrastructure that
             lets organizations grow.
@@ -99,17 +101,15 @@
       </section>
 
       <section id="contact" class="section contact-section">
-        <div class="contact-panel" data-reveal>
-          <div class="section-rail">
+        <div class="contact-panel">
+          <div class="contact-copy">
             <p class="section-index">03</p>
-            <div class="section-head">
-              <h2>Let’s build</h2>
-              <p id="contact-intro">
-                If you're building something, let's talk.
-              </p>
-            </div>
+            <h2>Let’s build</h2>
+            <p id="contact-intro">
+              If you're building something, let's talk.
+            </p>
           </div>
-          <div class="contact-links" id="contact-links"></div>
+          <div class="contact-actions" id="contact-links"></div>
         </div>
       </section>
     </main>

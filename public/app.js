@@ -1,9 +1,6 @@
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-const prefersReduced =
-  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-
 const ACCENTS = ["gold", "cyan", "ember", "violet"];
 
 function escapeHtml(str) {
@@ -47,28 +44,44 @@ function padIndex(n) {
   return String(n).padStart(2, "0");
 }
 
-function initReveal() {
-  const nodes = document.querySelectorAll("[data-reveal]");
-  if (!nodes.length) return;
-
-  if (prefersReduced || !("IntersectionObserver" in window)) {
-    nodes.forEach((n) => n.classList.add("is-visible"));
-    return;
+function contactItems(contact) {
+  const items = [];
+  if (contact?.email) {
+    items.push({
+      href: `mailto:${contact.email}`,
+      label: contact.email,
+      short: "Email",
+      kind: "Email",
+    });
   }
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
-        }
-      }
-    },
-    { rootMargin: "0px 0px -6% 0px", threshold: 0.06 },
-  );
-
-  nodes.forEach((n) => io.observe(n));
+  if (contact?.github) {
+    items.push({
+      href: contact.github,
+      label: "msinclair25",
+      short: "GitHub",
+      kind: "GitHub",
+      external: true,
+    });
+  }
+  if (contact?.linkedin) {
+    items.push({
+      href: contact.linkedin,
+      label: "LinkedIn",
+      short: "LinkedIn",
+      kind: "LinkedIn",
+      external: true,
+    });
+  }
+  if (contact?.x) {
+    items.push({
+      href: contact.x,
+      label: "@morganinc",
+      short: "X",
+      kind: "X",
+      external: true,
+    });
+  }
+  return items;
 }
 
 function renderProjects(projects) {
@@ -79,7 +92,7 @@ function renderProjects(projects) {
 
   if (!featured.length) {
     grid.innerHTML = `
-      <li class="project-card placeholder" data-accent="gold" data-reveal>
+      <li class="project-card placeholder" data-accent="gold">
         <div class="project-main">
           <div class="project-top"><span class="tag">Vault</span></div>
           <h3>Projects incoming</h3>
@@ -89,7 +102,6 @@ function renderProjects(projects) {
         </div>
       </li>
     `;
-    initReveal();
     return;
   }
 
@@ -118,7 +130,7 @@ function renderProjects(projects) {
       const tagClass = p.status === "wip" ? "tag wip" : "tag";
 
       return `
-        <li class="project-card" data-accent="${accent}" data-reveal style="--delay: ${i * 50}ms">
+        <li class="project-card" data-accent="${accent}">
           <div class="project-num" aria-hidden="true">${padIndex(i + 1)}</div>
           <div class="project-main">
             <div class="project-top">
@@ -137,8 +149,6 @@ function renderProjects(projects) {
       `;
     })
     .join("");
-
-  initReveal();
 }
 
 function renderAbout(about) {
@@ -157,63 +167,48 @@ function renderAbout(about) {
 }
 
 function renderContact(contact) {
+  const items = contactItems(contact);
+
+  const header = document.getElementById("header-socials");
+  if (header) {
+    if (!items.length) {
+      header.innerHTML = `<a href="https://github.com/msinclair25" target="_blank" rel="noopener noreferrer">GitHub</a>`;
+    } else {
+      header.innerHTML = items
+        .map((item) => {
+          const ext = item.external
+            ? ` target="_blank" rel="noopener noreferrer"`
+            : "";
+          return `<a href="${escapeHtml(item.href)}"${ext}>${escapeHtml(item.short)}</a>`;
+        })
+        .join("");
+    }
+  }
+
+  const heroEmail = document.getElementById("hero-email");
+  if (heroEmail && contact?.email) {
+    heroEmail.href = `mailto:${contact.email}`;
+  }
+
   const wrap = document.getElementById("contact-links");
   if (!wrap) return;
 
-  const items = [];
-  if (contact?.email) {
-    items.push({
-      href: `mailto:${contact.email}`,
-      label: contact.email,
-      kind: "Email",
-    });
-  }
-  if (contact?.github) {
-    items.push({
-      href: contact.github,
-      label: "msinclair25",
-      kind: "GitHub",
-      external: true,
-    });
-  }
-  if (contact?.linkedin) {
-    items.push({
-      href: contact.linkedin,
-      label: "Morgan Sinclair",
-      kind: "LinkedIn",
-      external: true,
-    });
-  }
-  if (contact?.x) {
-    items.push({
-      href: contact.x,
-      label: "@morganinc",
-      kind: "X",
-      external: true,
-    });
-  }
-
   if (!items.length) {
     wrap.innerHTML = `
-      <a class="contact-card" href="https://github.com/msinclair25" target="_blank" rel="noopener noreferrer">
-        <span class="kind">GitHub</span>
-        <span class="label">msinclair25</span>
+      <a class="btn primary" href="https://github.com/msinclair25" target="_blank" rel="noopener noreferrer">
+        GitHub
       </a>
     `;
     return;
   }
 
   wrap.innerHTML = items
-    .map((item) => {
+    .map((item, i) => {
       const ext = item.external
         ? ` target="_blank" rel="noopener noreferrer"`
         : "";
-      return `
-        <a class="contact-card" href="${escapeHtml(item.href)}"${ext}>
-          <span class="kind">${escapeHtml(item.kind)}</span>
-          <span class="label">${escapeHtml(item.label)}</span>
-        </a>
-      `;
+      const cls = i === 0 ? "btn primary" : "btn ghost";
+      return `<a class="${cls}" href="${escapeHtml(item.href)}"${ext}>${escapeHtml(item.label)}</a>`;
     })
     .join("");
 
@@ -226,8 +221,6 @@ function renderContact(contact) {
 }
 
 async function boot() {
-  initReveal();
-
   try {
     const res = await fetch("/data/site.json", { cache: "no-cache" });
     if (!res.ok) throw new Error(`site.json ${res.status}`);
