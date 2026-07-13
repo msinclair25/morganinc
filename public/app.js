@@ -1,8 +1,6 @@
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-const ACCENTS = ["gold", "cyan", "ember", "violet"];
-
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
@@ -37,11 +35,7 @@ function statusLabel(status) {
     wip: "In progress",
     archived: "Archived",
   };
-  return map[status] || status || "Project";
-}
-
-function padIndex(n) {
-  return String(n).padStart(2, "0");
+  return map[status] || status || "";
 }
 
 function contactItems(contact) {
@@ -49,17 +43,16 @@ function contactItems(contact) {
   if (contact?.email) {
     items.push({
       href: `mailto:${contact.email}`,
-      label: contact.email,
-      short: "Email",
-      kind: "Email",
+      label: "Email",
+      full: contact.email,
+      external: false,
     });
   }
   if (contact?.github) {
     items.push({
       href: contact.github,
-      label: "msinclair25",
-      short: "GitHub",
-      kind: "GitHub",
+      label: "GitHub",
+      full: "GitHub",
       external: true,
     });
   }
@@ -67,21 +60,23 @@ function contactItems(contact) {
     items.push({
       href: contact.linkedin,
       label: "LinkedIn",
-      short: "LinkedIn",
-      kind: "LinkedIn",
+      full: "LinkedIn",
       external: true,
     });
   }
   if (contact?.x) {
     items.push({
       href: contact.x,
-      label: "@morganinc",
-      short: "X",
-      kind: "X",
+      label: "X",
+      full: "X",
       external: true,
     });
   }
   return items;
+}
+
+function linkAttrs(item) {
+  return item.external ? ` target="_blank" rel="noopener noreferrer"` : "";
 }
 
 function renderProjects(projects) {
@@ -91,60 +86,47 @@ function renderProjects(projects) {
   const featured = (projects || []).filter((p) => p.featured !== false);
 
   if (!featured.length) {
-    grid.innerHTML = `
-      <li class="project-card placeholder" data-accent="gold">
-        <div class="project-main">
-          <div class="project-top"><span class="tag">Vault</span></div>
-          <h3>Projects incoming</h3>
-          <p class="summary">
-            Add a note under <code>content/projects/</code> and redeploy.
-          </p>
-        </div>
-      </li>
-    `;
+    grid.innerHTML = `<li class="work-empty">Projects coming soon.</li>`;
     return;
   }
 
   grid.innerHTML = featured
-    .map((p, i) => {
-      const accent = ACCENTS[i % ACCENTS.length];
-      const stack =
+    .map((p) => {
+      const tags =
         Array.isArray(p.stack) && p.stack.length
-          ? `<ul class="stack">${p.stack
+          ? `<ul class="work-tags">${p.stack
               .map((s) => `<li>${escapeHtml(s)}</li>`)
               .join("")}</ul>`
           : "";
 
-      const actions = [];
+      const links = [];
       if (p.links?.live) {
-        actions.push(
-          `<a class="primary-link" href="${escapeHtml(p.links.live)}" target="_blank" rel="noopener noreferrer">Open live <span aria-hidden="true">↗</span></a>`,
+        links.push(
+          `<a href="${escapeHtml(p.links.live)}" target="_blank" rel="noopener noreferrer">Live</a>`,
         );
       }
       if (p.links?.repo) {
-        actions.push(
-          `<a href="${escapeHtml(p.links.repo)}" target="_blank" rel="noopener noreferrer">Repo <span aria-hidden="true">↗</span></a>`,
+        links.push(
+          `<a href="${escapeHtml(p.links.repo)}" target="_blank" rel="noopener noreferrer">Repo</a>`,
         );
       }
+      const linkRow = links.length
+        ? `<div class="work-links">${links.join("")}</div>`
+        : "";
 
-      const tagClass = p.status === "wip" ? "tag wip" : "tag";
+      const status = p.status
+        ? `<span class="status">${escapeHtml(statusLabel(p.status))}</span>`
+        : "";
 
       return `
-        <li class="project-card" data-accent="${accent}">
-          <div class="project-num" aria-hidden="true">${padIndex(i + 1)}</div>
-          <div class="project-main">
-            <div class="project-top">
-              <span class="${tagClass}">${escapeHtml(statusLabel(p.status))}</span>
-            </div>
+        <li class="work-item">
+          <div class="work-meta">
             <h3>${escapeHtml(p.title)}</h3>
-            <p class="summary">${escapeHtml(p.summary || "")}</p>
-            ${stack}
+            ${status}
           </div>
-          ${
-            actions.length
-              ? `<div class="project-actions">${actions.join("")}</div>`
-              : ""
-          }
+          <p class="summary">${escapeHtml(p.summary || "")}</p>
+          ${tags}
+          ${linkRow}
         </li>
       `;
     })
@@ -169,48 +151,23 @@ function renderAbout(about) {
 function renderContact(contact) {
   const items = contactItems(contact);
 
-  const header = document.getElementById("header-socials");
-  if (header) {
+  const listHtml = (useFull) => {
     if (!items.length) {
-      header.innerHTML = `<a href="https://github.com/msinclair25" target="_blank" rel="noopener noreferrer">GitHub</a>`;
-    } else {
-      header.innerHTML = items
-        .map((item) => {
-          const ext = item.external
-            ? ` target="_blank" rel="noopener noreferrer"`
-            : "";
-          return `<a href="${escapeHtml(item.href)}"${ext}>${escapeHtml(item.short)}</a>`;
-        })
-        .join("");
+      return `<li><a href="https://github.com/msinclair25" target="_blank" rel="noopener noreferrer">GitHub</a></li>`;
     }
-  }
+    return items
+      .map((item) => {
+        const text = useFull && item.label === "Email" ? item.full : item.label;
+        return `<li><a href="${escapeHtml(item.href)}"${linkAttrs(item)}>${escapeHtml(text)}</a></li>`;
+      })
+      .join("");
+  };
 
-  const heroEmail = document.getElementById("hero-email");
-  if (heroEmail && contact?.email) {
-    heroEmail.href = `mailto:${contact.email}`;
-  }
+  const header = document.getElementById("header-socials");
+  if (header) header.innerHTML = listHtml(false);
 
-  const wrap = document.getElementById("contact-links");
-  if (!wrap) return;
-
-  if (!items.length) {
-    wrap.innerHTML = `
-      <a class="btn primary" href="https://github.com/msinclair25" target="_blank" rel="noopener noreferrer">
-        GitHub
-      </a>
-    `;
-    return;
-  }
-
-  wrap.innerHTML = items
-    .map((item, i) => {
-      const ext = item.external
-        ? ` target="_blank" rel="noopener noreferrer"`
-        : "";
-      const cls = i === 0 ? "btn primary" : "btn ghost";
-      return `<a class="${cls}" href="${escapeHtml(item.href)}"${ext}>${escapeHtml(item.label)}</a>`;
-    })
-    .join("");
+  const contactList = document.getElementById("contact-links");
+  if (contactList) contactList.innerHTML = listHtml(true);
 
   if (contact?.body) {
     const intro = document.getElementById("contact-intro");
@@ -229,7 +186,7 @@ async function boot() {
     renderProjects(site.projects);
     renderContact(site.contact);
   } catch (err) {
-    console.warn("Content load failed; using embedded fallbacks.", err);
+    console.warn("Content load failed; using fallbacks.", err);
     renderProjects([]);
     renderContact({ github: "https://github.com/msinclair25" });
   }
