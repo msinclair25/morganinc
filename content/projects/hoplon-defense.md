@@ -1,13 +1,13 @@
 ---
 title: Hoplon Defense
-status: shipped
+status: wip
 featured: true
 order: 4
 stack: [AI, Workers, Privacy, Governance, Multi-model]
 links:
   live: https://hoplondef.com
-  repo: https://github.com/msinclair25/hoplon
-summary: Company AI chat with privacy, governance, multi-model routing, and token compression.
+  repo:
+summary: Company AI chat with privacy, governance, multi-model routing, and token compression. Work in progress — public login not open yet.
 ---
 
 ## Context
@@ -32,4 +32,4 @@ Enterprise teams need AI chat that respects org policy, privacy, and cost — no
 
 ## Outcome
 
-Live product at [hoplondef.com](https://hoplondef.com). Source on GitHub (private for now).
+In progress. Marketing / landing presence at [hoplondef.com](https://hoplondef.com); public login is not open yet. Source remains private on GitHub for now.
