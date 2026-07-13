@@ -1,0 +1,14 @@
+{
+  "name": "morganinc",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portfolio website for Morgan Sinclair — morganinc.cc",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "wrangler": "^4.110.0"
+  }
+}

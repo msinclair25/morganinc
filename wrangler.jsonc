@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "morganinc",
+  // Today's date — update periodically for new runtime features
+  "compatibility_date": "2026-07-12",
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  // Static portfolio assets (Workers Static Assets)
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  // Custom domains on zone morganinc.cc
+  "routes": [
+    {
+      "pattern": "morganinc.cc",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.morganinc.cc",
+      "custom_domain": true
+    }
+  ]
+}
