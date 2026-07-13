@@ -5,4 +5,4 @@ linkedin: https://www.linkedin.com/in/morgan-s-10b65839
 x: https://x.com/morganinc
 ---
 
-Email, GitHub, LinkedIn, or X — pick whichever works best.
+If you're building something, let's talk.

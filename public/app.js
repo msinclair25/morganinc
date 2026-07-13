@@ -76,8 +76,6 @@ function renderProjects(projects) {
   if (!grid) return;
 
   const featured = (projects || []).filter((p) => p.featured !== false);
-  const countEl = document.getElementById("stat-projects");
-  if (countEl) countEl.textContent = padIndex(featured.length || 0);
 
   if (!featured.length) {
     grid.innerHTML = `
