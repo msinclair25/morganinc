@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 48" aria-hidden="true">
+  <ellipse cx="40" cy="40" rx="28" ry="6" fill="#c4b5a0" opacity="0.45"/>
+  <circle cx="28" cy="28" r="14" fill="#3d6b4f"/>
+  <circle cx="44" cy="24" r="16" fill="#5a8f6a"/>
+  <circle cx="56" cy="30" r="12" fill="#3d6b4f"/>
+  <circle cx="36" cy="32" r="11" fill="#4a7d5a"/>
+  <circle cx="48" cy="34" r="9" fill="#2f5640"/>
+  <!-- Desert sand flecks -->
+  <circle cx="18" cy="40" r="1.2" fill="#d4a574"/>
+  <circle cx="62" cy="42" r="1" fill="#c4784a" opacity="0.6"/>
+</svg>

@@ -115,7 +115,7 @@ function renderProjects(projects) {
         : "";
 
       const status = p.status
-        ? `<span class="status">${escapeHtml(statusLabel(p.status))}</span>`
+        ? `<span class="status${p.status === "wip" ? " wip" : ""}">${escapeHtml(statusLabel(p.status))}</span>`
         : "";
 
       return `
