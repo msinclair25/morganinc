@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T07:53:59.019Z",
+  "generatedAt": "2026-07-14T00:30:03.719Z",
   "about": {
     "title": "About",
     "headline": "Infrastructure, AI, DevOps, Cloud Engineering",
@@ -75,7 +75,7 @@
         "Strategy"
       ],
       "links": {
-        "live": "https://sector-lords.pages.dev/",
+        "live": "https://sectorlords.com",
         "repo": "https://github.com/msinclair25/sector-lords"
       },
       "summary": "A browser-based cyberpunk crime-war strategy game.",

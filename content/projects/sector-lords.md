@@ -6,7 +6,7 @@ order: 2
 track: Product
 stack: [Game, Browser, Strategy]
 links:
-  live: https://sector-lords.pages.dev/
+  live: https://sectorlords.com
   repo: https://github.com/msinclair25/sector-lords
 summary: A browser-based cyberpunk crime-war strategy game.
 ---
