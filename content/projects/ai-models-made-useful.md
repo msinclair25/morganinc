@@ -6,7 +6,7 @@ order: 4
 track: Product
 stack: [AI, Guides, Workers]
 links:
-  live: https://bold-dawn-9942.darthcmo.workers.dev/
+  live: https://aiguide.morganinc.cc
   repo:
 summary: A guide to get people into AI, use it successfully, and take them from beginner through intermediate to advanced.
 ---
